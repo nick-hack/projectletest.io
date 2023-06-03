@@ -1,0 +1,5 @@
+open phpmyadmin server and got to and create database 
+
+database name = "test"
+
+import file in database name= "students" 
