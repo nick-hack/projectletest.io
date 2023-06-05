@@ -200,7 +200,15 @@
                                 <span class="visually-hidden">unread messages</span>
                             </span>
                         </button>
-                        <br>
+
+                        <!---search------------------------>
+                        <!-- <button type="button" class="btn btn-primary float-end" style="margin-right: 30px;">
+                            <div class="input-group">
+                                <input class="form-control border border rounded-pill" type="search" id="example-search-input" placeholder="Search">
+                            </div>
+                        </button> -->
+                        <!---search------------------------>
+
                         <table class="table table-success table-striped table-bordered" id="studentsTable">
                             <thead class="table-dark">
                                 <tr>

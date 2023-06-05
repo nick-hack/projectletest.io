@@ -29,11 +29,11 @@ function loadStudents(page = 1, per_page = 10) {
     <td>${student['Roll No']}</td>
     <td>${student['mobileno']}</td>
     <td>
-       
+
         <button class="btn" onclick="deleteStudent('${student['Id']}')"><i class="fa fa-edit"></i></button>
 
         <button class="btn" onclick="deleteStudent('${student['Id']}')"><i class="fa fa-trash"></i></button>
-        
+
     </td>
 `;
                 tableBody.appendChild(row);
@@ -205,54 +205,167 @@ function sendData() {
 
 
 
+// function performSearch() {
+//     // Get the search input element
+//     const searchInput = document.getElementById('example-search-input');
 
-//old code
-// function sendData() {
-//     // Create a new XMLHttpRequest object
-//     let xhr = new XMLHttpRequest();
+//     // Get the search value
+//     const searchValue = searchInput.value;
 
-//     // Define the endpoint URL and method
-//     let url = "http://localhost/newapi/admin/api-insert.php";
-//     let method = "POST";
+//     // Send an AJAX request to the PHP API
+//     const xhr = new XMLHttpRequest();
+//     xhr.open('POST', 'http://localhost/newapi/User/api-search.php', true);
+//     xhr.setRequestHeader('Content-Type', 'application/json');
+//     xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 
-//     // Create a data object with the form values
-//     let data = {
-//         sname: document.getElementById("sname").value,
-//         sage: document.getElementById("sage").value,
-//         scity: document.getElementById("scity").value,
-//         sRollNo: document.getElementById("sRollNo").value,
-//         smobileno: document.getElementById("smobileno").value
-//     };
-
-//     // Convert the data object to a JSON string
-//     let jsonData = JSON.stringify(data);
-
-//     // Open the request
-//     xhr.open(method, url, true);
-
-//     // Set the request headers
-//     xhr.setRequestHeader("Content-Type", "application/json");
-//     xhr.setRequestHeader("Access-control-Allow-Origin", "*");
-//     xhr.setRequestHeader("Access-control-Allow-Methods", "POST");
-//     xhr.setRequestHeader("Access-control-Allow-Headers", "Access-control-Allow-Headers, Content-Type, Access-control-Allow-Methods, Authorization, X-Requested-With");
-
-//     // Define the response handler function
 //     xhr.onreadystatechange = function () {
-//         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-//             console.log(xhr.responseText);
-//             // Reload the page
-//             location.reload();
-//         } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status !== 200) {
-//             console.error(xhr.responseText);
-//             // Do something with the error response
+//         if (xhr.readyState === 4 && xhr.status === 200) {
+//             const response = JSON.parse(xhr.responseText);
+//             // Handle the response data
+//             console.log(response);
 //         }
 //     };
 
-//     // Send the request with the JSON data
-//     xhr.send(jsonData);
+//     const data = JSON.stringify({ search: searchValue });
+//     xhr.send(data);
 // }
 
+// // Listen for the 'input' event
+// const searchInput = document.getElementById('example-search-input');
+// searchInput.addEventListener('input', performSearch);
 
 
 
 
+
+
+// function performSearch() {
+//     // Get the search input element
+//     const searchInput = document.getElementById('example-search-input');
+
+//     // Get the search value
+//     const searchValue = searchInput.value;
+
+//     // Send an AJAX request to the PHP API
+//     const xhr = new XMLHttpRequest();
+//     xhr.open('POST', 'http://localhost/newapi/User/api-search.php', true);
+//     xhr.setRequestHeader('Content-Type', 'application/json');
+//     xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+
+//     xhr.onreadystatechange = function () {
+//         if (xhr.readyState === 4 && xhr.status === 200) {
+//             const response = JSON.parse(xhr.responseText);
+//             // Handle the response data
+//             console.log(response);
+//             // Update the table with the filtered data
+//             updateTable(response.data);
+//             // Clear the search input
+//             searchInput.value = '';
+//         }
+//     };
+
+//     const data = JSON.stringify({ search: searchValue });
+//     xhr.send(data);
+// }
+
+// function updateTable(data) {
+//     // Update table body with data
+//     const tableBody = document.querySelector("#studentsTable tbody");
+//     tableBody.innerHTML = "";
+
+//     data.forEach((student) => {
+//         const row = document.createElement("tr");
+//         row.innerHTML = `
+//             <td>${student['Student Name']}</td>
+//             <td>${student['Age']}</td>
+//             <td>${student['City']}</td>
+//             <td>${student['Roll No']}</td>
+//             <td>${student['mobileno']}</td>
+//             <td>
+//                 <button class="btn" onclick="deleteStudent('${student['Id']}')">
+//                     <i class="fa fa-edit"></i>
+//                 </button>
+//                 <button class="btn" onclick="deleteStudent('${student['Id']}')">
+//                     <i class="fa fa-trash"></i>
+//                 </button>
+//             </td>
+//         `;
+//         tableBody.appendChild(row);
+//     });
+// }
+
+// function loadStudents(page = 1, per_page = 10) {
+//     const xhr = new XMLHttpRequest();
+//     const token = localStorage.getItem('token'); // Retrieve token from local storage
+
+//     const searchValue = document.getElementById('example-search-input').value;
+
+//     let url = `http://localhost/newapi/User/api-fetch-false.php?page=${page}&per_page=${per_page}`;
+
+//     if (searchValue) {
+//         url += `&search=${searchValue}`;
+//     }
+
+//     xhr.open("GET", url);
+//     xhr.setRequestHeader("Authorization", `Bearer ${token}`); // Set token in the request header
+//     xhr.setRequestHeader("Access-control-Allow-Origin", "*");
+//     xhr.onload = function () {
+//         if (xhr.status === 200) {
+//             const response = JSON.parse(xhr.responseText);
+//             const students = response.data;
+//             const pagination = response.pagination;
+//             const email = response.email;
+//             const names = response.names;
+
+//             // Update table with the initial data
+//             updateTable(students);
+
+//             // Update pagination info
+//             const paginationDiv = document.querySelector("#pagination");
+//             paginationDiv.innerHTML = `
+//                 <p>Page <span id="current-page">${pagination.current_page}</span> of <span id="total-pages">${pagination.total_pages}</span></p>
+//                 <div class="pagination-buttons">
+//                     <button onclick="loadStudents(${pagination.current_page - 1}, ${pagination.records_per_page})" ${pagination.current_page === 1 ? 'disabled' : ''}>
+//                         <i class="fas fa-chevron-left"></i> Prev
+//                     </button>
+//                     <button onclick="loadStudents(${pagination.current_page + 1}, ${pagination.records_per_page})" ${pagination.current_page === pagination.total_pages ? 'disabled' : ''}>
+//                         Next <i class="fas fa-chevron-right"></i>
+//                     </button>
+//                 </div>
+//             `;
+
+//             // Update total records count
+//             const totalRecordsSpan = document.querySelector("#total-records");
+//             totalRecordsSpan.innerText = pagination.total_records;
+
+//             // Update current page number
+//             const currentPageSpan = document.querySelector("#current-page");
+//             currentPageSpan.innerText = pagination.current_page;
+
+//             // Update total pages count
+//             const totalPagesSpan = document.querySelector("#total-pages");
+//             totalPagesSpan.innerText = pagination.total_pages;
+
+//             // Update email field
+//             const emailSpan = document.querySelector("#email");
+//             emailSpan.innerText = email.length > 0 ? email : "No email available";
+
+//             // Update names field
+//             const namesSpan = document.querySelector("#names");
+//             namesSpan.innerText = names.length > 0 ? names : "No names available";
+//         } else {
+//             console.error(xhr.statusText);
+//         }
+//     };
+//     xhr.onerror = function () {
+//         console.error(xhr.statusText);
+//     };
+//     xhr.send();
+// }
+
+// // Listen for the 'input' event
+// const searchInput = document.getElementById('example-search-input');
+// searchInput.addEventListener('input', performSearch);
+
+// // Load first page of data on page load
+// loadStudents();
