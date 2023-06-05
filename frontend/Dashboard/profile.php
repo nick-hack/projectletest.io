@@ -292,8 +292,163 @@
                     </div> -->
 
 
+                </div>
+
+                <br>
+                <br>
+
+                <!------ card design slider--------------------------------->
+
+                <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="card-wrapper container-sm d-flex  justify-content-around">
+                                <!--card-->
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        <div class="flip-card-front">
+                                            <img src="https://source.unsplash.com/collection/190727/1600x900" alt="Avatar" style="width:300px;height:300px;">
+                                        </div>
+                                        <div class="flip-card-back">
+                                            <h1>John Doe</h1>
+                                            <p>Architect & Engineer</p>
+                                            <p>We love that guy</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--card-->
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        <div class="flip-card-front">
+                                            <img src="https://source.unsplash.com/collection/190727/1600x900" alt="Avatar" style="width:300px;height:300px;">
+                                        </div>
+                                        <div class="flip-card-back">
+                                            <h1>John Doe</h1>
+                                            <p>Architect & Engineer</p>
+                                            <p>We love that guy</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--card-->
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        <div class="flip-card-front">
+                                            <img src="https://source.unsplash.com/collection/190727/1600x900" alt="Avatar" style="width:300px;height:300px;">
+                                        </div>
+                                        <div class="flip-card-back">
+                                            <h1>John Doe</h1>
+                                            <p>Architect & Engineer</p>
+                                            <p>We love that guy</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--card-->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card-wrapper container-sm d-flex   justify-content-around">
+                                <!--card-->
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        <div class="flip-card-front">
+                                            <img src="https://source.unsplash.com/collection/190727/1600x900" alt="Avatar" style="width:300px;height:300px;">
+                                        </div>
+                                        <div class="flip-card-back">
+                                            <h1>John Doe</h1>
+                                            <p>Architect & Engineer</p>
+                                            <p>We love that guy</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--card-->
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        <div class="flip-card-front">
+                                            <img src="https://source.unsplash.com/collection/190727/1600x900" alt="Avatar" style="width:300px;height:300px;">
+                                        </div>
+                                        <div class="flip-card-back">
+                                            <h1>John Doe</h1>
+                                            <p>Architect & Engineer</p>
+                                            <p>We love that guy</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--card-->
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        <div class="flip-card-front">
+                                            <img src="https://source.unsplash.com/collection/190727/1600x900" alt="Avatar" style="width:300px;height:300px;">
+                                        </div>
+                                        <div class="flip-card-back">
+                                            <h1>John Doe</h1>
+                                            <p>Architect & Engineer</p>
+                                            <p>We love that guy</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--card-->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card-wrapper container-sm d-flex  justify-content-around">
+                                <!--card-->
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        <div class="flip-card-front">
+                                            <img src="https://source.unsplash.com/collection/190727/1600x900" alt="Avatar" style="width:300px;height:300px;">
+                                        </div>
+                                        <div class="flip-card-back">
+                                            <h1>John Doe</h1>
+                                            <p>Architect & Engineer</p>
+                                            <p>We love that guy</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--card-->
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        <div class="flip-card-front">
+                                            <img src="https://source.unsplash.com/collection/190727/1600x900" alt="Avatar" style="width:300px;height:300px;">
+                                        </div>
+                                        <div class="flip-card-back">
+                                            <h1>John Doe</h1>
+                                            <p>Architect & Engineer</p>
+                                            <p>We love that guy</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--card-->
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        <div class="flip-card-front">
+                                            <img src="https://source.unsplash.com/collection/190727/1600x900" alt="Avatar" style="width:300px;height:300px;">
+                                        </div>
+                                        <div class="flip-card-back">
+                                            <h1>John Doe</h1>
+                                            <p>Architect & Engineer</p>
+                                            <p>We love that guy</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--card-->
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
 
                 </div>
+
+
+
+                <!-------------- card design slider--------------------------------->
+
             </div>
 
         </div>
