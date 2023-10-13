@@ -23,10 +23,7 @@ $age = $data['sage'] ?? '';
 $city = $data['scity'] ?? '';
 $RollNo = $data['sRollNo'] ?? '';
 $mobileno = $data['smobileno'] ?? '';
-// echo "<pre>";
-// print_r($data);
-// echo "</pre>";
-// exit();
+
 // Update the student data in the database
 $sql = "UPDATE students SET 
             student_name = '{$student_name}',

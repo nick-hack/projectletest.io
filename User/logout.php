@@ -12,30 +12,90 @@ header('Access-control-Allow-Headers: Access-control-Allow-Headers,Content-Type,
 // Start session
 session_start();
 
-// Check if user is logged in
-if (isset($_SESSION['email'])) {
-    // If logged in, check if the login token matches the one provided in the request
-    $request_body = json_decode(file_get_contents('php://input'));
-    $logout_token = $request_body->logout_token;
-    if ($_SESSION['email'] == $logout_token) {
-        // If the login token matches, unset session and return success message
-        session_unset();
-        session_destroy();
-        $response = new stdClass();
-        $response->status_message = 'Logout Successful';
-        $response->status_code = 200;
-        echo json_encode($response);
+// Retrieve the token from the request header
+$headers = apache_request_headers();
+$token = isset($headers['Authorization']) ? $headers['Authorization'] : null;
+
+if (!empty($token)) {
+    $result = decodeJWTToken($token);
+
+    if (isLoggedIn()) {
+        if (verifyTokenEmail($result)) {
+            performLogout();
+            session_unset();
+            session_destroy();
+            returnSuccessResponse('Logout Successful', 200);
+        } else {
+            returnErrorResponse('Invalid Logout Token', 400);
+        }
     } else {
-        // If the login token does not match, return error message
-        $response = new stdClass();
-        $response->status_message = 'Invalid Logout Token';
-        $response->status_code = 400;
-        echo json_encode($response);
+        returnErrorResponse('User not logged in', 400);
     }
 } else {
-    // If not logged in, return error message
-    $response = new stdClass();
-    $response->status_message = 'User not logged in';
-    $response->status_code = 400;
+    returnErrorResponse('No token provided', 400);
+}
+
+// Function to check if user is logged in
+function isLoggedIn()
+{
+    return isset($_SESSION['email']);
+}
+
+// Function to verify token email against session email
+function verifyTokenEmail($result)
+{
+    return $_SESSION['email'] === $result['response']['data']['email'];
+}
+
+// Function to perform logout
+function performLogout()
+{
+    session_unset();
+    session_destroy();
+}
+
+// Function to return success response
+function returnSuccessResponse($message, $statusCode)
+{
+    $response = array(
+        'status_message' => $message,
+        'status_code' => $statusCode
+    );
     echo json_encode($response);
+}
+
+// Function to return error response
+function returnErrorResponse($message, $statusCode)
+{
+    $response = array(
+        'status_message' => $message,
+        'status_code' => $statusCode
+    );
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
+// Function to decode JWT token
+function decodeJWTToken($token)
+{
+    // Split the token into its three parts: header, payload, and signature
+    $token_parts = explode('.', $token);
+    $header = base64_decode($token_parts[0]);
+    $payload = base64_decode($token_parts[1]);
+    $signature = $token_parts[2];
+
+    // Decode the payload JSON into an associative array
+    $payload_array = json_decode($payload, true);
+
+    // At this point, the token has been successfully verified, and the payload data can be used in your application
+    $user_id = $payload_array['Id'];
+
+    // Example response
+    $response = array(
+        'message' => 'Token successfully decrypted',
+        'Id' => $user_id,
+        'response' => $payload_array
+    );
+
+    return $response;
 }

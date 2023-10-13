@@ -205,34 +205,34 @@ function sendData() {
 
 
 
-// function performSearch() {
-//     // Get the search input element
-//     const searchInput = document.getElementById('example-search-input');
+function performSearch() {
+    // Get the search input element
+    const searchInput = document.getElementById('example-search-input');
 
-//     // Get the search value
-//     const searchValue = searchInput.value;
+    // Get the search value
+    const searchValue = searchInput.value;
 
-//     // Send an AJAX request to the PHP API
-//     const xhr = new XMLHttpRequest();
-//     xhr.open('POST', 'http://localhost/newapi/User/api-search.php', true);
-//     xhr.setRequestHeader('Content-Type', 'application/json');
-//     xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+    // Send an AJAX request to the PHP API
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost/newapi/User/api-search.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 
-//     xhr.onreadystatechange = function () {
-//         if (xhr.readyState === 4 && xhr.status === 200) {
-//             const response = JSON.parse(xhr.responseText);
-//             // Handle the response data
-//             console.log(response);
-//         }
-//     };
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            // Handle the response data
+            console.log(response);
+        }
+    };
 
-//     const data = JSON.stringify({ search: searchValue });
-//     xhr.send(data);
-// }
+    const data = JSON.stringify({ search: searchValue });
+    xhr.send(data);
+}
 
-// // Listen for the 'input' event
-// const searchInput = document.getElementById('example-search-input');
-// searchInput.addEventListener('input', performSearch);
+// Listen for the 'input' event
+const searchInput = document.getElementById('example-search-input');
+searchInput.addEventListener('input', performSearch);
 
 
 
@@ -267,6 +267,19 @@ function sendData() {
 //     const data = JSON.stringify({ search: searchValue });
 //     xhr.send(data);
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // function updateTable(data) {
 //     // Update table body with data
