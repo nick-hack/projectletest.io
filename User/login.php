@@ -29,14 +29,18 @@ if (empty($username) || empty($password)) {
 include_once('../Config/config.php');
 
 // Check if user exists in the database
-$sql = "SELECT * FROM users WHERE email='{$username}'";
+$sql = "SELECT * FROM users WHERE Email='{$username}'";
+
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) == 1) {
     // If user exists, verify password and generate JWT token
     $row = mysqli_fetch_assoc($result);
-    $hashed_password = $row['password'];
-
+    $hashed_password = $row['PasswordHash'];
+    // echo "<pre>";
+    // print_r($hashed_password);
+    // echo "</pre>";
+    // exit();
     if (password_verify($password, $hashed_password)) {
         session_start();
         $_SESSION['email'] = $username;
@@ -50,7 +54,7 @@ if (mysqli_num_rows($result) == 1) {
         $expire_claim = $issuedat_claim + 3600; // expire time in seconds
 
         // Get student name from database
-        $sql = "SELECT Id,concat(FirstName,' ',LastName)As names,MobileNo,email FROM users WHERE email='{$username}'";
+        $sql = "SELECT Id,concat(FirstName,' ',LastName)As names,MobileNo,Email FROM users WHERE Email='{$username}'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $name = $row['names'];
@@ -70,7 +74,7 @@ if (mysqli_num_rows($result) == 1) {
             "exp" => $expire_claim,
             "sec" => $secret_key,
             "data" => array(
-                "email" => $username,
+                "Email" => $username,
                 "names" => $name,
                 "MobileNo" => $MobileNo,
                 "Id" => $user_id
@@ -109,3 +113,17 @@ if (mysqli_num_rows($result) == 1) {
     $response->status_code = 400;
     echo json_encode($response);
 }
+
+
+// {
+//     "email":"newjonny55@myportal.com",
+//         "password":"789654"
+       
+//     }
+
+
+// {
+//     "email":"JohnDoe@myportal.com",
+//         "password":"789654"
+       
+//     }
